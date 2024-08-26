@@ -896,7 +896,218 @@ const CountryIncomeCatagory = {
   
 
 
-  async function fetchCountryData(country) {
+  const gdpData = {
+    
+        "GDP_2022": [
+          {"Ranking": 1, "Economy": "United States", "GDP_USD_Millions": 25462700},
+          {"Ranking": 2, "Economy": "China", "GDP_USD_Millions": 17963171},
+          {"Ranking": 3, "Economy": "Japan", "GDP_USD_Millions": 4231141},
+          {"Ranking": 4, "Economy": "Germany", "GDP_USD_Millions": 4072192},
+          {"Ranking": 5, "Economy": "India", "GDP_USD_Millions": 3385090},
+          {"Ranking": 6, "Economy": "United Kingdom", "GDP_USD_Millions": 3070668},
+          {"Ranking": 7, "Economy": "France", "GDP_USD_Millions": 2782905},
+          {"Ranking": 8, "Economy": "Russian Federation", "GDP_USD_Millions": 2240422},
+          {"Ranking": 9, "Economy": "Canada", "GDP_USD_Millions": 2139840},
+          {"Ranking": 10, "Economy": "Italy", "GDP_USD_Millions": 2010432},
+          {"Ranking": 11, "Economy": "Brazil", "GDP_USD_Millions": 1920096},
+          {"Ranking": 12, "Economy": "Australia", "GDP_USD_Millions": 1675419},
+          {"Ranking": 13, "Economy": "Korea, Rep.", "GDP_USD_Millions": 1665246},
+          {"Ranking": 14, "Economy": "Mexico", "GDP_USD_Millions": 1414187},
+          {"Ranking": 15, "Economy": "Spain", "GDP_USD_Millions": 1397509},
+          {"Ranking": 16, "Economy": "Indonesia", "GDP_USD_Millions": 1319100},
+          {"Ranking": 17, "Economy": "Saudi Arabia", "GDP_USD_Millions": 1108149},
+          {"Ranking": 18, "Economy": "Netherlands", "GDP_USD_Millions": 991115},
+          {"Ranking": 19, "Economy": "Türkiye", "GDP_USD_Millions": 905988},
+          {"Ranking": 20, "Economy": "Switzerland", "GDP_USD_Millions": 807706},
+          {"Ranking": 21, "Economy": "Poland", "GDP_USD_Millions": 688177},
+          {"Ranking": 22, "Economy": "Argentina", "GDP_USD_Millions": 632770},
+          {"Ranking": 23, "Economy": "Sweden", "GDP_USD_Millions": 585939},
+          {"Ranking": 24, "Economy": "Norway", "GDP_USD_Millions": 579267},
+          {"Ranking": 25, "Economy": "Belgium", "GDP_USD_Millions": 578604},
+          {"Ranking": 26, "Economy": "Cuba", "GDP_USD_Millions": 545218},
+          {"Ranking": 27, "Economy": "Ireland", "GDP_USD_Millions": 529245},
+          {"Ranking": 28, "Economy": "Israel", "GDP_USD_Millions": 522033},
+          {"Ranking": 29, "Economy": "United Arab Emirates", "GDP_USD_Millions": 507535},
+          {"Ranking": 30, "Economy": "Thailand", "GDP_USD_Millions": 495341},
+          {"Ranking": 31, "Economy": "Nigeria", "GDP_USD_Millions": 477386},
+          {"Ranking": 32, "Economy": "Egypt, Arab Rep.", "GDP_USD_Millions": 476748},
+          {"Ranking": 33, "Economy": "Austria", "GDP_USD_Millions": 471400},
+          {"Ranking": 34, "Economy": "Singapore", "GDP_USD_Millions": 466789},
+          {"Ranking": 35, "Economy": "Bangladesh", "GDP_USD_Millions": 460201},
+          {"Ranking": 36, "Economy": "Vietnam", "GDP_USD_Millions": 408802},
+          {"Ranking": 37, "Economy": "Malaysia", "GDP_USD_Millions": 406306},
+          {"Ranking": 38, "Economy": "South Africa", "GDP_USD_Millions": 405870},
+          {"Ranking": 39, "Economy": "Philippines", "GDP_USD_Millions": 404284},
+          {"Ranking": 40, "Economy": "Denmark", "GDP_USD_Millions": 395404},
+          {"Ranking": 41, "Economy": "Iran, Islamic Rep.", "GDP_USD_Millions": 388544},
+          {"Ranking": 42, "Economy": "Pakistan", "GDP_USD_Millions": 376533},
+          {"Ranking": 43, "Economy": "Hong Kong SAR, China", "GDP_USD_Millions": 359839},
+          {"Ranking": 44, "Economy": "Colombia", "GDP_USD_Millions": 343939},
+          {"Ranking": 45, "Economy": "Romania", "GDP_USD_Millions": 301262},
+          {"Ranking": 46, "Economy": "Chile", "GDP_USD_Millions": 301025},
+          {"Ranking": 47, "Economy": "Czech Republic", "GDP_USD_Millions": 290924},
+          {"Ranking": 48, "Economy": "Finland", "GDP_USD_Millions": 280826},
+          {"Ranking": 49, "Economy": "Iraq", "GDP_USD_Millions": 264182},
+          {"Ranking": 50, "Economy": "Portugal", "GDP_USD_Millions": 251945},
+          {"Ranking": 51, "Economy": "New Zealand", "GDP_USD_Millions": 247234},
+          {"Ranking": 52, "Economy": "Peru", "GDP_USD_Millions": 242632},
+          {"Ranking": 53, "Economy": "Qatar", "GDP_USD_Millions": 237296},
+          {"Ranking": 54, "Economy": "Kazakhstan", "GDP_USD_Millions": 220623},
+          {"Ranking": 55, "Economy": "Greece", "GDP_USD_Millions": 219066},
+          {"Ranking": 56, "Economy": "Algeria", "GDP_USD_Millions": 191913},
+          {"Ranking": 57, "Economy": "Kuwait", "GDP_USD_Millions": 184558},
+          {"Ranking": 58, "Economy": "Hungary", "GDP_USD_Millions": 178789},
+          {"Ranking": 59, "Economy": "Ukraine", "GDP_USD_Millions": 160503},
+          {"Ranking": 60, "Economy": "Morocco", "GDP_USD_Millions": 134182},
+          {"Ranking": 61, "Economy": "Ethiopia", "GDP_USD_Millions": 126783},
+          {"Ranking": 62, "Economy": "Slovak Republic", "GDP_USD_Millions": 115469},
+          {"Ranking": 63, "Economy": "Ecuador", "GDP_USD_Millions": 115049},
+          {"Ranking": 64, "Economy": "Oman", "GDP_USD_Millions": 114667},
+          {"Ranking": 65, "Economy": "Dominican Republic", "GDP_USD_Millions": 113642},
+          {"Ranking": 66, "Economy": "Puerto Rico", "GDP_USD_Millions": 113435},
+          {"Ranking": 67, "Economy": "Kenya", "GDP_USD_Millions": 113420},
+          {"Ranking": 68, "Economy": "Angola", "GDP_USD_Millions": 106714},
+          {"Ranking": 69, "Economy": "Guatemala", "GDP_USD_Millions": 95003},
+          {"Ranking": 70, "Economy": "Bulgaria", "GDP_USD_Millions": 89040},
+          {"Ranking": 71, "Economy": "Luxembourg", "GDP_USD_Millions": 82275},
+          {"Ranking": 72, "Economy": "Uzbekistan", "GDP_USD_Millions": 80392},
+          {"Ranking": 73, "Economy": "Azerbaijan", "GDP_USD_Millions": 78721},
+          {"Ranking": 74, "Economy": "Panama", "GDP_USD_Millions": 76523},
+          {"Ranking": 75, "Economy": "Tanzania", "GDP_USD_Millions": 75709},
+          {"Ranking": 76, "Economy": "Sri Lanka", "GDP_USD_Millions": 74404},
+          {"Ranking": 77, "Economy": "Ghana", "GDP_USD_Millions": 72839},
+          {"Ranking": 78, "Economy": "Belarus", "GDP_USD_Millions": 72793},
+          {"Ranking": 79, "Economy": "Uruguay", "GDP_USD_Millions": 71177},
+          {"Ranking": 80, "Economy": "Croatia", "GDP_USD_Millions": 70965},
+          {"Ranking": 81, "Economy": "Lithuania", "GDP_USD_Millions": 70334},
+          {"Ranking": 82, "Economy": "Côte d'Ivoire", "GDP_USD_Millions": 70019},
+          {"Ranking": 83, "Economy": "Costa Rica", "GDP_USD_Millions": 68381},
+          {"Ranking": 84, "Economy": "Serbia", "GDP_USD_Millions": 63502},
+          {"Ranking": 85, "Economy": "Slovenia", "GDP_USD_Millions": 62118},
+          {"Ranking": 86, "Economy": "Myanmar", "GDP_USD_Millions": 59364},
+          {"Ranking": 87, "Economy": "Congo, Dem. Rep.", "GDP_USD_Millions": 58066},
+          {"Ranking": 88, "Economy": "Sudan", "GDP_USD_Millions": 51662},
+          {"Ranking": 89, "Economy": "Jordan", "GDP_USD_Millions": 47451},
+          {"Ranking": 90, "Economy": "Tunisia", "GDP_USD_Millions": 46665},
+          {"Ranking": 91, "Economy": "Libya", "GDP_USD_Millions": 45752},
+          {"Ranking": 92, "Economy": "Turkmenistan", "GDP_USD_Millions": 45611},
+          {"Ranking": 93, "Economy": "Uganda", "GDP_USD_Millions": 45559},
+          {"Ranking": 94, "Economy": "Bahrain", "GDP_USD_Millions": 44391},
+          {"Ranking": 95, "Economy": "Cameroon", "GDP_USD_Millions": 44342},
+          {"Ranking": 96, "Economy": "Bolivia", "GDP_USD_Millions": 43069},
+          {"Ranking": 97, "Economy": "Paraguay", "GDP_USD_Millions": 41722},
+          {"Ranking": 98, "Economy": "Latvia", "GDP_USD_Millions": 41154},
+          {"Ranking": 99, "Economy": "Nepal", "GDP_USD_Millions": 40828},
+          {"Ranking": 100, "Economy": "Estonia", "GDP_USD_Millions": 38101},
+          {"Ranking": 101, "Economy": "El Salvador", "GDP_USD_Millions": 32489},
+          {"Ranking": 102, "Economy": "Honduras", "GDP_USD_Millions": 31718},
+          {"Ranking": 103, "Economy": "Papua New Guinea", "GDP_USD_Millions": 30633},
+          {"Ranking": 104, "Economy": "Cambodia", "GDP_USD_Millions": 29957},
+          {"Ranking": 105, "Economy": "Zambia", "GDP_USD_Millions": 29784},
+          {"Ranking": 106, "Economy": "Cyprus", "GDP_USD_Millions": 28439},
+          {"Ranking": 107, "Economy": "Trinidad and Tobago", "GDP_USD_Millions": 27899},
+          {"Ranking": 108, "Economy": "Iceland", "GDP_USD_Millions": 27842},
+          {"Ranking": 109, "Economy": "Senegal", "GDP_USD_Millions": 27684},
+          {"Ranking": 110, "Economy": "Georgia", "GDP_USD_Millions": 24605},
+          {"Ranking": 111, "Economy": "Bosnia and Herzegovina", "GDP_USD_Millions": 24528},
+          {"Ranking": 112, "Economy": "Lebanon", "GDP_USD_Millions": 23132},
+          {"Ranking": 113, "Economy": "Macao SAR, China", "GDP_USD_Millions": 21979},
+          {"Ranking": 114, "Economy": "Guinea", "GDP_USD_Millions": 21228},
+          {"Ranking": 115, "Economy": "Gabon", "GDP_USD_Millions": 21072},
+          {"Ranking": 116, "Economy": "Zimbabwe", "GDP_USD_Millions": 20678},
+          {"Ranking": 117, "Economy": "Botswana", "GDP_USD_Millions": 20352},
+          {"Ranking": 118, "Economy": "Haiti", "GDP_USD_Millions": 20254},
+          {"Ranking": 119, "Economy": "Armenia", "GDP_USD_Millions": 19503},
+          {"Ranking": 120, "Economy": "West Bank and Gaza", "GDP_USD_Millions": 19112},
+          {"Ranking": 121, "Economy": "Burkina Faso", "GDP_USD_Millions": 18885},
+          {"Ranking": 122, "Economy": "Albania", "GDP_USD_Millions": 18882},
+          {"Ranking": 123, "Economy": "Mali", "GDP_USD_Millions": 18827},
+          {"Ranking": 124, "Economy": "Mozambique", "GDP_USD_Millions": 17851},
+          {"Ranking": 125, "Economy": "Malta", "GDP_USD_Millions": 17765},
+          {"Ranking": 126, "Economy": "Benin", "GDP_USD_Millions": 17402},
+          {"Ranking": 127, "Economy": "Jamaica", "GDP_USD_Millions": 17098},
+          {"Ranking": 128, "Economy": "Mongolia", "GDP_USD_Millions": 16811},
+          {"Ranking": 129, "Economy": "Brunei Darussalam", "GDP_USD_Millions": 16682},
+          {"Ranking": 130, "Economy": "Lao PDR", "GDP_USD_Millions": 15724},
+          {"Ranking": 131, "Economy": "Nicaragua", "GDP_USD_Millions": 15672},
+          {"Ranking": 132, "Economy": "Guyana", "GDP_USD_Millions": 15358},
+          {"Ranking": 133, "Economy": "Madagascar", "GDP_USD_Millions": 14955},
+          {"Ranking": 134, "Economy": "Congo, Rep.", "GDP_USD_Millions": 14616},
+          {"Ranking": 135, "Economy": "Afghanistan", "GDP_USD_Millions": 14583},
+          {"Ranking": 136, "Economy": "Moldova", "GDP_USD_Millions": 14421},
+          {"Ranking": 137, "Economy": "Niger", "GDP_USD_Millions": 13970},
+          {"Ranking": 138, "Economy": "North Macedonia", "GDP_USD_Millions": 13563},
+          {"Ranking": 139, "Economy": "Rwanda", "GDP_USD_Millions": 13313},
+          {"Ranking": 140, "Economy": "Malawi", "GDP_USD_Millions": 13165},
+          {"Ranking": 141, "Economy": "Mauritius", "GDP_USD_Millions": 12898},
+          {"Ranking": 142, "Economy": "Bahamas, The", "GDP_USD_Millions": 12897},
+          {"Ranking": 143, "Economy": "Chad", "GDP_USD_Millions": 12704},
+          {"Ranking": 144, "Economy": "Namibia", "GDP_USD_Millions": 12607},
+          {"Ranking": 145, "Economy": "Equatorial Guinea", "GDP_USD_Millions": 11814},
+          {"Ranking": 146, "Economy": "Channel Islands", "GDP_USD_Millions": 11736},
+          {"Ranking": 147, "Economy": "Syrian Arab Republic", "GDP_USD_Millions": 11159},
+          {"Ranking": 148, "Economy": "Kyrgyz Republic", "GDP_USD_Millions": 10931},
+          {"Ranking": 149, "Economy": "Tajikistan", "GDP_USD_Millions": 10492},
+          {"Ranking": 150, "Economy": "Mauritania", "GDP_USD_Millions": 10375},
+          {"Ranking": 151, "Economy": "New Caledonia", "GDP_USD_Millions": 10071},
+          {"Ranking": 152, "Economy": "Kosovo", "GDP_USD_Millions": 9429},
+          {"Ranking": 153, "Economy": "Monaco", "GDP_USD_Millions": 8596},
+          {"Ranking": 154, "Economy": "Togo", "GDP_USD_Millions": 8126},
+          {"Ranking": 155, "Economy": "Somalia", "GDP_USD_Millions": 8126},
+          {"Ranking": 156, "Economy": "Bermuda", "GDP_USD_Millions": 7551},
+          {"Ranking": 157, "Economy": "Liechtenstein", "GDP_USD_Millions": 7186},
+          {"Ranking": 158, "Economy": "Isle of Man", "GDP_USD_Millions": 6684},
+          {"Ranking": 159, "Economy": "Maldives", "GDP_USD_Millions": 6190},
+          {"Ranking": 160, "Economy": "Guam", "GDP_USD_Millions": 6123},
+          {"Ranking": 161, "Economy": "Montenegro", "GDP_USD_Millions": 6096},
+          {"Ranking": 162, "Economy": "French Polynesia", "GDP_USD_Millions": 6080},
+          {"Ranking": 163, "Economy": "Cayman Islands", "GDP_USD_Millions": 6028},
+          {"Ranking": 164, "Economy": "Barbados", "GDP_USD_Millions": 5638},
+          {"Ranking": 165, "Economy": "Fiji", "GDP_USD_Millions": 4943},
+          {"Ranking": 166, "Economy": "Eswatini", "GDP_USD_Millions": 4854},
+          {"Ranking": 167, "Economy": "Virgin Islands (U.S.)", "GDP_USD_Millions": 4204},
+          {"Ranking": 168, "Economy": "Liberia", "GDP_USD_Millions": 4001},
+          {"Ranking": 169, "Economy": "Sierra Leone", "GDP_USD_Millions": 3970},
+          {"Ranking": 170, "Economy": "Faroe Islands", "GDP_USD_Millions": 3650},
+          {"Ranking": 171, "Economy": "Suriname", "GDP_USD_Millions": 3621},
+          {"Ranking": 172, "Economy": "Djibouti", "GDP_USD_Millions": 3515},
+          {"Ranking": 173, "Economy": "Andorra", "GDP_USD_Millions": 3352},
+          {"Ranking": 174, "Economy": "Greenland", "GDP_USD_Millions": 3236},
+          {"Ranking": 175, "Economy": "Timor-Leste", "GDP_USD_Millions": 3163},
+          {"Ranking": 176, "Economy": "Aruba", "GDP_USD_Millions": 3126},
+          {"Ranking": 177, "Economy": "Burundi", "GDP_USD_Millions": 3073},
+          {"Ranking": 178, "Economy": "Belize", "GDP_USD_Millions": 2824},
+          {"Ranking": 179, "Economy": "Curaçao", "GDP_USD_Millions": 2700},
+          {"Ranking": 180, "Economy": "Lesotho", "GDP_USD_Millions": 2553},
+          {"Ranking": 181, "Economy": "Bhutan", "GDP_USD_Millions": 2540},
+          {"Ranking": 182, "Economy": "Central African Republic", "GDP_USD_Millions": 2383},
+          {"Ranking": 183, "Economy": "Cabo Verde", "GDP_USD_Millions": 2315},
+          {"Ranking": 184, "Economy": "Gambia, The", "GDP_USD_Millions": 2273},
+          {"Ranking": 185, "Economy": "St. Lucia", "GDP_USD_Millions": 2065},
+          {"Ranking": 186, "Economy": "San Marino", "GDP_USD_Millions": 1855},
+          {"Ranking": 187, "Economy": "Antigua and Barbuda", "GDP_USD_Millions": 1758},
+          {"Ranking": 188, "Economy": "Guinea-Bissau", "GDP_USD_Millions": 1634},
+          {"Ranking": 189, "Economy": "Solomon Islands", "GDP_USD_Millions": 1596},
+          {"Ranking": 190, "Economy": "Seychelles", "GDP_USD_Millions": 1588},
+          {"Ranking": 191, "Economy": "Sint Maarten (Dutch part)", "GDP_USD_Millions": 1572},
+          {"Ranking": 192, "Economy": "Grenada", "GDP_USD_Millions": 1256},
+          {"Ranking": 193, "Economy": "Comoros", "GDP_USD_Millions": 1243},
+          {"Ranking": 194, "Economy": "Turks and Caicos Islands", "GDP_USD_Millions": 1139},
+          {"Ranking": 195, "Economy": "Vanuatu", "GDP_USD_Millions": 984},
+          {"Ranking": 196, "Economy": "St. Kitts and Nevis", "GDP_USD_Millions": 962},
+          {"Ranking": 197, "Economy": "St. Vincent and the Grenadines", "GDP_USD_Millions": 949},
+          {"Ranking": 198, "Economy": "Northern Mariana Islands", "GDP_USD_Millions": 858},
+          {"Ranking": 199, "Economy": "Samoa", "GDP_USD_Millions": 832},
+          {"Ranking": 200, "Economy": "American Samoa", "GDP_USD_Millions": 709},
+          {"Ranking": 201, "Economy": "Dominica", "GDP_USD_Millions": 612},
+          {"Ranking": 202, "Economy": "São Tomé and Principe", "GDP_USD_Millions": 547},
+          {"Ranking": 203, "Economy": "Tonga", "GDP_USD_Millions": 469},
+          {"Ranking": 204, "Economy": "Micronesia, Fed. Sts.", "GDP_USD_Millions": 427}
+      ]
+      
+};
+
+async function fetchCountryData(country) {
     const response = await fetch(`https://restcountries.com/v3.1/name/${country}?fullText=true`);
     if (!response.ok) {
         throw new Error(`Country ${country} not found`);
@@ -905,13 +1116,19 @@ const CountryIncomeCatagory = {
     return data[0];
 }
 
+function getGDPData(countryName) {
+    const countryGDP = gdpData.GDP_2022.find(entry => entry.Economy === countryName);
+    return countryGDP ? countryGDP.GDP_USD_Millions : 'N/A';
+}
+
 function getAdditionalCountryData(countryName) {
     const countryCode = countryCodeData[countryName];
     const corruptionIndex = corruptionIndexData[countryName];
     const continent = countryContinentData[countryName];
     const lifeExpectancy = CountryAvgLifeExpectancy[countryName];
     const incomeCategory = CountryIncomeCatagory[countryName];
-    return { corruptionIndex, continent, lifeExpectancy, incomeCategory };
+    const gdp = getGDPData(countryName);
+    return { corruptionIndex, continent, lifeExpectancy, incomeCategory, gdp };
 }
 
 async function compareCountries() {
@@ -942,6 +1159,7 @@ async function compareCountries() {
                 <tbody>
                     <tr><td>Area (sq km)</td><td>${data1.area}</td><td>${data2.area}</td></tr>
                     <tr><td>Population</td><td>${data1.population}</td><td>${data2.population}</td></tr>
+                    <tr><td>GDP (USD Millions)</td><td>${additionalData1.gdp}</td><td>${additionalData2.gdp}</td></tr>
                     <tr><td>Corruption Index</td><td>${additionalData1.corruptionIndex || 'N/A'}</td><td>${additionalData2.corruptionIndex || 'N/A'}</td></tr>
                     <tr><td>Life Expectancy</td><td>${additionalData1.lifeExpectancy || 'N/A'}</td><td>${additionalData2.lifeExpectancy || 'N/A'}</td></tr>
                     <tr><td>Continent</td><td>${additionalData1.continent}</td><td>${additionalData2.continent}</td></tr>
@@ -955,6 +1173,7 @@ async function compareCountries() {
         const chartData = [
             { attribute: 'Area (sq km)', values: [data1.area, data2.area] },
             { attribute: 'Population', values: [data1.population, data2.population] },
+            { attribute: 'GDP (USD Millions)', values: [additionalData1.gdp, additionalData2.gdp] },
             { attribute: 'Corruption Index', values: [additionalData1.corruptionIndex || 0, additionalData2.corruptionIndex || 0] },
             { attribute: 'Life Expectancy', values: [additionalData1.lifeExpectancy || 0, additionalData2.lifeExpectancy || 0] }
         ];
@@ -972,11 +1191,7 @@ async function compareCountries() {
 }
 
 
-function createBarChart(element, title, labels, data1, data2, country1, country2) {
-    // Ensure data1 and data2 are arrays
-    data1 = Array.isArray(data1) ? data1 : [data1];
-    data2 = Array.isArray(data2) ? data2 : [data2];
-
+function createBarChart(element, title, labels, data) {
     const svg = d3.select(element).append("svg")
         .attr("width", 400)
         .attr("height", 400);
@@ -991,62 +1206,41 @@ function createBarChart(element, title, labels, data1, data2, country1, country2
         .padding(0.2);
 
     const y = d3.scaleLinear()
-        .domain([0, d3.max([...data1, ...data2])])
+        .domain([0, d3.max(data)])
         .nice()
         .range([height, 0]);
 
     const g = svg.append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    // Use a single color for all bars
     const barColor = "steelblue";
 
     // Add y-axis
     g.append("g")
-        .call(d3.axisLeft(y).ticks(5).tickFormat(d => {
-            if (d >= 1e9) {
-                return (d / 1e9).toFixed(2) + " billion";
-            } else if (d >= 1e6) {
-                return (d / 1e6).toFixed(2) + " million";
-            } else {
-                return d;
-            }
-        }));
+    .call(d3.axisLeft(y).ticks(5).tickFormat(d => {
+        if (d >= 1e12) {
+            return (d / 1e12).toFixed(2) + " trillion";
+        } else if (d >= 1e9) {
+            return (d / 1e9).toFixed(2) + " billion";
+        } else if (d >= 1e6) {
+            return (d / 1e6).toFixed(2) + " million";
+        } else {
+            return d;
+        }
+    }));
 
-    // Add x-axis
+
     g.append("g")
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(x));
 
-    // Add bars for the first country
-    g.selectAll(".bar1")
-        .data(data1)
+    g.selectAll(".bar")
+        .data(data)
         .enter().append("rect")
-        .attr("class", "bar1")
+        .attr("class", "bar")
         .attr("x", (d, i) => x(labels[i]))
         .attr("y", d => y(d))
-        .attr("width", x.bandwidth() / 2)
-        .attr("height", d => height - y(d))
-        .attr("fill", barColor)
-        .on("mouseover", function(event, d) {
-            d3.select(this)
-                .attr("fill", d3.rgb(barColor).darker(2));
-            showTooltip(event, d);
-        })
-        .on("mouseout", function() {
-            d3.select(this)
-                .attr("fill", barColor);
-            hideTooltip();
-        });
-
-    // Add bars for the second country
-    g.selectAll(".bar2")
-        .data(data2)
-        .enter().append("rect")
-        .attr("class", "bar2")
-        .attr("x", (d, i) => x(labels[i]) + x.bandwidth() / 2)
-        .attr("y", d => y(d))
-        .attr("width", x.bandwidth() / 2)
+        .attr("width", x.bandwidth())
         .attr("height", d => height - y(d))
         .attr("fill", barColor)
         .on("mouseover", function(event, d) {
@@ -1068,7 +1262,6 @@ function createBarChart(element, title, labels, data1, data2, country1, country2
         .attr("font-weight", "bold")
         .text(title);
 
-    // Tooltip
     const tooltip = d3.select("body").append("div")
         .attr("class", "tooltip")
         .style("position", "absolute")
@@ -1089,4 +1282,3 @@ function createBarChart(element, title, labels, data1, data2, country1, country2
         tooltip.style("display", "none");
     }
 }
-
