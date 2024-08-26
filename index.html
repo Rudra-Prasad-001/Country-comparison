@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://d3js.org/d3.v7.min.js" defer></script>
     <script src="script.js" defer></script>
     <title>Country Comparison</title>
 </head>
@@ -15,15 +15,15 @@
         </div>
         <div class="hero">
             <div class="input-group">
-                <label for="country1">Country1:</label>
+                <label for="country1">Country 1:</label>
                 <input class="country1" type="text" id="country1">
-                <label for="country2">Country2:</label>
+                <label for="country2">Country 2:</label>
                 <input class="country2" type="text" id="country2">
             </div>
             <button onclick="compareCountries()">Compare</button>
         </div>
         <div class="middle" id="results">
-            <!-- Country data will be displayed here -->
+            <!-- Table and charts will be dynamically inserted here -->
         </div>
         <div class="footer">
             <p>© 2024</p>
@@ -32,3 +32,5 @@
     </div>
 </body>
 </html>
+
+

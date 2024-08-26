@@ -926,175 +926,167 @@ async function compareCountries() {
         const additionalData2 = getAdditionalCountryData(data2.name.common);
 
         const results = document.getElementById('results');
-        results.innerHTML = `
-            <canvas id="areaChart" width="400" height="200"></canvas>
-            <canvas id="populationChart" width="400" height="200"></canvas>
-            <canvas id="corruptionChart" width="400" height="200"></canvas>
-            <canvas id="lifeExpectancyChart" width="400" height="200"></canvas>
-            <canvas id="incomeCategoryChart" width="400" height="200"></canvas>
+        
+        // Check if results element exists
+        if (!results) {
+            console.error("The results container is missing in the DOM.");
+            return;
+        }
+
+        // Create table for displaying data
+        const tableHTML = `
+            <table>
+                <thead>
+                    <tr><th>Attribute</th><th>${data1.name.common}</th><th>${data2.name.common}</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Area (sq km)</td><td>${data1.area}</td><td>${data2.area}</td></tr>
+                    <tr><td>Population</td><td>${data1.population}</td><td>${data2.population}</td></tr>
+                    <tr><td>Corruption Index</td><td>${additionalData1.corruptionIndex || 'N/A'}</td><td>${additionalData2.corruptionIndex || 'N/A'}</td></tr>
+                    <tr><td>Life Expectancy</td><td>${additionalData1.lifeExpectancy || 'N/A'}</td><td>${additionalData2.lifeExpectancy || 'N/A'}</td></tr>
+                    <tr><td>Continent</td><td>${additionalData1.continent}</td><td>${additionalData2.continent}</td></tr>
+                </tbody>
+            </table>
         `;
 
-        const ctxArea = document.getElementById('areaChart').getContext('2d');
-        const ctxPopulation = document.getElementById('populationChart').getContext('2d');
-        const ctxCorruption = document.getElementById('corruptionChart').getContext('2d');
-        const ctxLifeExpectancy = document.getElementById('lifeExpectancyChart').getContext('2d');
-        const ctxIncomeCategory = document.getElementById('incomeCategoryChart').getContext('2d');
+        results.innerHTML = tableHTML + `<div id="chartsContainer"></div>`;
 
-        // Area Chart
-        new Chart(ctxArea, {
-            type: 'bar',
-            data: {
-                labels: ['Area (sq km)'],
-                datasets: [
-                    {
-                        label: data1.name.common,
-                        data: [data1.area],
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: data2.name.common,
-                        data: [data2.area],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
+        // D3.js chart code for each data
+        const chartData = [
+            { attribute: 'Area (sq km)', values: [data1.area, data2.area] },
+            { attribute: 'Population', values: [data1.population, data2.population] },
+            { attribute: 'Corruption Index', values: [additionalData1.corruptionIndex || 0, additionalData2.corruptionIndex || 0] },
+            { attribute: 'Life Expectancy', values: [additionalData1.lifeExpectancy || 0, additionalData2.lifeExpectancy || 0] }
+        ];
+
+        const chartsContainer = d3.select("#chartsContainer");
+
+        chartData.forEach(d => {
+            const chartDiv = chartsContainer.append("div").attr("class", "chart");
+            createBarChart(chartDiv.node(), d.attribute, [data1.name.common, data2.name.common], d.values);
         });
 
-        // Population Chart
-        new Chart(ctxPopulation, {
-            type: 'bar',
-            data: {
-                labels: ['Population'],
-                datasets: [
-                    {
-                        label: data1.name.common,
-                        data: [data1.population],
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: data2.name.common,
-                        data: [data2.population],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        // Corruption Index Chart
-        new Chart(ctxCorruption, {
-            type: 'bar',
-            data: {
-                labels: ['Corruption Index'],
-                datasets: [
-                    {
-                        label: data1.name.common,
-                        data: [additionalData1.corruptionIndex || 0],
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: data2.name.common,
-                        data: [additionalData2.corruptionIndex || 0],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        // Life Expectancy Chart
-        new Chart(ctxLifeExpectancy, {
-            type: 'bar',
-            data: {
-                labels: ['Life Expectancy'],
-                datasets: [
-                    {
-                        label: data1.name.common,
-                        data: [additionalData1.lifeExpectancy || 0],
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: data2.name.common,
-                        data: [additionalData2.lifeExpectancy || 0],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        // Income Category Chart
-        new Chart(ctxIncomeCategory, {
-            type: 'bar',
-            data: {
-                labels: ['Income Category'],
-                datasets: [
-                    {
-                        label: data1.name.common,
-                        data: [additionalData1.incomeCategory],
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: data2.name.common,
-                        data: [additionalData2.incomeCategory],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
     } catch (error) {
         document.getElementById('results').innerHTML = `<p>Error: ${error.message}</p>`;
     }
 }
+
+
+function createBarChart(element, title, labels, data1, data2, country1, country2) {
+    // Ensure data1 and data2 are arrays
+    data1 = Array.isArray(data1) ? data1 : [data1];
+    data2 = Array.isArray(data2) ? data2 : [data2];
+
+    const svg = d3.select(element).append("svg")
+        .attr("width", 400)
+        .attr("height", 400);
+
+    const margin = { top: 30, right: 50, bottom: 50, left: 80 };
+    const width = 400 - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
+
+    const x = d3.scaleBand()
+        .domain(labels)
+        .range([0, width])
+        .padding(0.2);
+
+    const y = d3.scaleLinear()
+        .domain([0, d3.max([...data1, ...data2])])
+        .nice()
+        .range([height, 0]);
+
+    const g = svg.append("g")
+        .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Use a single color for all bars
+    const barColor = "steelblue";
+
+    // Add y-axis
+    g.append("g")
+        .call(d3.axisLeft(y).ticks(5).tickFormat(d => {
+            if (d >= 1e9) {
+                return (d / 1e9).toFixed(2) + " billion";
+            } else if (d >= 1e6) {
+                return (d / 1e6).toFixed(2) + " million";
+            } else {
+                return d;
+            }
+        }));
+
+    // Add x-axis
+    g.append("g")
+        .attr("transform", `translate(0,${height})`)
+        .call(d3.axisBottom(x));
+
+    // Add bars for the first country
+    g.selectAll(".bar1")
+        .data(data1)
+        .enter().append("rect")
+        .attr("class", "bar1")
+        .attr("x", (d, i) => x(labels[i]))
+        .attr("y", d => y(d))
+        .attr("width", x.bandwidth() / 2)
+        .attr("height", d => height - y(d))
+        .attr("fill", barColor)
+        .on("mouseover", function(event, d) {
+            d3.select(this)
+                .attr("fill", d3.rgb(barColor).darker(2));
+            showTooltip(event, d);
+        })
+        .on("mouseout", function() {
+            d3.select(this)
+                .attr("fill", barColor);
+            hideTooltip();
+        });
+
+    // Add bars for the second country
+    g.selectAll(".bar2")
+        .data(data2)
+        .enter().append("rect")
+        .attr("class", "bar2")
+        .attr("x", (d, i) => x(labels[i]) + x.bandwidth() / 2)
+        .attr("y", d => y(d))
+        .attr("width", x.bandwidth() / 2)
+        .attr("height", d => height - y(d))
+        .attr("fill", barColor)
+        .on("mouseover", function(event, d) {
+            d3.select(this)
+                .attr("fill", d3.rgb(barColor).darker(2));
+            showTooltip(event, d);
+        })
+        .on("mouseout", function() {
+            d3.select(this)
+                .attr("fill", barColor);
+            hideTooltip();
+        });
+
+    svg.append("text")
+        .attr("x", (width + margin.left + margin.right) / 2)
+        .attr("y", margin.top / 2)
+        .attr("text-anchor", "middle")
+        .attr("font-size", "16px")
+        .attr("font-weight", "bold")
+        .text(title);
+
+    // Tooltip
+    const tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("background-color", "white")
+        .style("border", "1px solid #ccc")
+        .style("padding", "5px")
+        .style("display", "none");
+
+    function showTooltip(event, d) {
+        tooltip
+            .style("left", event.pageX + 10 + "px")
+            .style("top", event.pageY - 25 + "px")
+            .style("display", "inline-block")
+            .html("Value: " + d3.format(",")(d));
+    }
+
+    function hideTooltip() {
+        tooltip.style("display", "none");
+    }
+}
+
