@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="script.js" defer></script>
+    <title>Country Comparison</title>
+</head>
+<body>
+    <div class="outer-wrap">
+        <div class="header">
+            <img src="" alt="logo" height="100px">
+        </div>
+        <div class="hero">
+            <div class="input-group">
+                <label for="country1">Country1:</label>
+                <input class="country1" type="text" id="country1">
+                <label for="country2">Country2:</label>
+                <input class="country2" type="text" id="country2">
+            </div>
+            <button onclick="compareCountries()">Compare</button>
+        </div>
+        <div class="middle" id="results">
+            <!-- Country data will be displayed here -->
+        </div>
+        <div class="footer">
+            <p>© 2024</p>
+            <p>Developed by Somyajeet</p>
+        </div>
+    </div>
+</body>
+</html>
